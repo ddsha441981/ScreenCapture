@@ -1,0 +1,62 @@
+name: Build and Release ScreenCapture
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install X11 dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake libx11-dev libxfixes-dev libxi-dev mesa-common-dev
+    
+    - name: Build with CMake
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+    
+    - name: Package for Linux
+      run: |
+        cd build
+        tar czf ../screencapture-${{ github.ref_name }}-linux-x86_64.tar.gz area_capture_tool
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: screencapture-${{ github.ref_name }}-linux-x86_64.tar.gz
+        body: |
+          # ScreenCapture ${{ github.ref_name }}
+          
+          **Linux X11 Screen Capture Tool**
+          
+          ## 📋 Requirements
+          - Linux with X11 desktop environment
+          - libx11 and libxfixes libraries
+          
+          ## 📥 Installation
+          ```
+          tar -xzf screencapture-${{ github.ref_name }}-linux-x86_64.tar.gz
+          chmod +x area_capture_tool
+          ./area_capture_tool
+          ```
+          
+          ## 🖥️ Supported Systems
+          - Ubuntu 18.04+
+          - Debian 9+
+          - Fedora 30+
+          - Arch Linux
+          - Other X11-based Linux distributions
+          
+          **Note:** This tool requires X11 and will not work on Wayland-only systems.
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
