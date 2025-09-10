@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/area_capture_tool.dir/rectangle_capture.cpp.o CMakeFiles/area_capture_tool.dir/stb_image_write_impl.cpp.o -o area_capture_tool  /usr/lib/x86_64-linux-gnu/libSM.so /usr/lib/x86_64-linux-gnu/libICE.so /usr/lib/x86_64-linux-gnu/libX11.so /usr/lib/x86_64-linux-gnu/libXext.so -lXfixes 

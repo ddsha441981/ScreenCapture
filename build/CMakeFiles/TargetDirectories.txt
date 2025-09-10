@@ -1,0 +1,3 @@
+/media/deendayal/personal/My Data/Development/cpp/ScreenCapture/build/CMakeFiles/area_capture_tool.dir
+/media/deendayal/personal/My Data/Development/cpp/ScreenCapture/build/CMakeFiles/edit_cache.dir
+/media/deendayal/personal/My Data/Development/cpp/ScreenCapture/build/CMakeFiles/rebuild_cache.dir
